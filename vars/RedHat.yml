@@ -1,0 +1,13 @@
+---
+# vars file for domain_join
+
+domain_join__packages:
+  - realmd
+  - sssd
+  - oddjob
+  - oddjob-mkhomedir
+  - adcli
+  - krb5-workstation
+  - samba-common
+  - samba-common-tools
+  - openldap-clients

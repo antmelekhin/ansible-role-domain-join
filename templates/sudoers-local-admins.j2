@@ -1,0 +1,5 @@
+{{ ansible_managed|comment }}
+
+{% for admin_group in domain_join__admin_groups %}
+%{{ admin_group|replace(' ', '\ ') }} ALL=(ALL) ALL
+{% endfor %}
