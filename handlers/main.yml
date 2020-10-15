@@ -1,7 +1,7 @@
 ---
 # handlers file for domain-join
 
-- name: Restart SSSD
+- name: 'Restart SSSD'
   service:
     name: sssd
     state: restarted

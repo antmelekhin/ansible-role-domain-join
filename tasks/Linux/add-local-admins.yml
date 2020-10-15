@@ -1,11 +1,11 @@
 ---
 
-- name: Install sudo package
+- name: 'Linux | Install sudo package'
   package:
     name: sudo
     state: present
 
-- name: Configure sudo permissions
+- name: 'Linux | Configure sudo permissions'
   template:
     src: sudoers-local-admins.j2
     dest: /etc/sudoers.d/local_admins

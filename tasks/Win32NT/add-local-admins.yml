@@ -1,6 +1,6 @@
 ---
 
-- name: Add a users to local Administrators group
+- name: 'Windows | Add a users to local Administrators group'
   win_group_membership:
     name: Administrators
     members: '{{ admin }}@{{ domain_join__dns_domain_name }}'

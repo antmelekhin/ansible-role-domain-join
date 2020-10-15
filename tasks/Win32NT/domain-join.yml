@@ -1,6 +1,6 @@
 ---
 
-- name: Join Windows to an Active Directory domain
+- name: 'Windows | Join to an Active Directory domain'
   win_domain_membership:
     dns_domain_name: '{{ domain_join__dns_domain_name }}'
     domain_admin_user: '{{ domain_join__username }}@{{ domain_join__dns_domain_name }}'
@@ -9,10 +9,10 @@
     state: domain
   register: domain_join_result
 
-- name: Reboot Windows after Active Directory domain joining
+- name: 'Reboot Windows'
   win_reboot:
   when: domain_join_result.reboot_required
 
-- name: Wait for system to become reachable over WinRM
+- name: 'Wait for system to become reachable over WinRM'
   wait_for_connection:
     timeout: 900

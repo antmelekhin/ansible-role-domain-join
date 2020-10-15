@@ -1,16 +1,16 @@
 ---
 # tasks file for domain-join
 
-- name: Load a variables file based on OS family
+- name: 'Include OS-specific variables'
   include_vars: '{{ distribution }}'
   with_first_found:
     - '{{ ansible_os_family }}.yml'
-    - default.yml
+    - 'default.yml'
   loop_control:
     loop_var: distribution
 
-- name: Load platform-specific tasks for domain join
+- name: 'Include OS-specific tasks for Domain Join'
   include_tasks: '{{ ansible_system }}/domain-join.yml'
 
-- name: Load platform-specific tasks for add local admins
+- name: 'Include OS-specific tasks for Add Local Administrators'
   include_tasks: '{{ ansible_system }}/add-local-admins.yml'
