@@ -9,5 +9,5 @@
     state: domain
   register: domain_join_result
   notify:
-    - Reboot Windows
-    - Wait for connection
+    - Windows | Reboot
+    - Windows | Wait for connection

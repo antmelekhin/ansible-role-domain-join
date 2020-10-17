@@ -1,15 +1,15 @@
 ---
 # handlers file for domain-join
 
-- name: 'Restart SSSD'
+- name: 'Linux | Restart SSSD'
   service:
     name: sssd
     state: restarted
 
-- name: 'Reboot Windows'
+- name: 'Windows | Reboot'
   win_reboot:
   when: domain_join_result.reboot_required
 
-- name: 'Wait for connection'
+- name: 'Windows | Wait for connection'
   wait_for_connection:
     timeout: 900

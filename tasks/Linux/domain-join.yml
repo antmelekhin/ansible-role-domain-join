@@ -20,7 +20,7 @@
     owner: root
     group: root
     mode: 0600
-  notify: Restart SSSD
+  notify: Linux | Restart SSSD
 
 - name: 'Linux | Configure Kerberos'
   template:
