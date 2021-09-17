@@ -7,7 +7,4 @@
     domain_admin_password: '{{ domain_join__password }}'
     domain_ou_path: '{{ domain_join__ou_path }}'
     state: domain
-  register: domain_join_result
-  notify:
-    - Windows | Reboot
-    - Windows | Wait for connection
+  notify: Windows | Reboot

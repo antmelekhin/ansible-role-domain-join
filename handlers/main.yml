@@ -8,8 +8,3 @@
 
 - name: 'Windows | Reboot'
   win_reboot:
-  when: domain_join_result.reboot_required
-
-- name: 'Windows | Wait for connection'
-  wait_for_connection:
-    timeout: 900
