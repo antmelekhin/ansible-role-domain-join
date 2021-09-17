@@ -1,0 +1,5 @@
+---
+# defaults file for domain-join
+
+domain_join__admin_groups:
+  - 'Domain Admins'

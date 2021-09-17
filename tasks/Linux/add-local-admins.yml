@@ -7,8 +7,8 @@
 
 - name: 'Linux | Configure sudo permissions'
   template:
-    src: sudoers-local-admins.j2
-    dest: /etc/sudoers.d/local_admins
+    src: sudoers-domain-admins.j2
+    dest: /etc/sudoers.d/domain-admins
     owner: root
     group: root
     mode: 0600
