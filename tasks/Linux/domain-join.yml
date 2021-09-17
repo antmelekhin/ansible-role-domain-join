@@ -6,9 +6,9 @@
     state: present
 
 - block:
-  - name: 'Linux | Checking Active Directory domain join status'
-    shell: '/usr/sbin/realm --membership-software=adcli discover {{ domain_join__dns_domain_name }} | grep "configured: kerberos-member"'
-    changed_when: false
+    - name: 'Linux | Checking Active Directory domain join status'
+      shell: '/usr/sbin/realm --membership-software=adcli discover {{ domain_join__dns_domain_name }} | grep "configured: kerberos-member"'
+      changed_when: false
   rescue:
     - name: 'Linux | Join to an Active Directory domain'
       shell: '/bin/echo {{ domain_join__password }} | /usr/sbin/realm --membership-software=adcli join {{ domain_join__dns_domain_name }} --user={{ domain_join__username }} --computer-ou={{ domain_join__ou_path }} --os-name={{ ansible_distribution }} --os-version={{ ansible_distribution_major_version }}'
