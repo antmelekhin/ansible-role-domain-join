@@ -11,3 +11,4 @@ domain_join__packages:
   - samba-common
   - samba-common-tools
   - openldap-clients
+  - sudo

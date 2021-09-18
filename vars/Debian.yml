@@ -13,3 +13,4 @@ domain_join__packages:
   - krb5-config
   - krb5-user
   - samba-common-bin
+  - sudo

@@ -1,10 +1,5 @@
 ---
 
-- name: 'Linux | Install sudo package'
-  package:
-    name: sudo
-    state: present
-
 - name: 'Linux | Configure sudo permissions'
   template:
     src: sudoers-domain-admins.j2
