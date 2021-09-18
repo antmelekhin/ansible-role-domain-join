@@ -1,0 +1,20 @@
+---
+
+- name: 'Check if short hostname length is compliant'
+  assert:
+    that: ansible_hostname | length <= 15
+    fail_msg: 'Hostname too long. Maximum NetBIOS characters is 15'
+
+- name: 'Check that required string variables are defined'
+  assert:
+    that: '{{ required_vars }} is defined and {{ required_vars }}'
+    fail_msg: '{{ required_vars }} needs to be set for the role to work'
+    success_msg: 'Required variables {{ required_vars }} is defined'
+  with_items:
+    - domain_join__dns_domain_name
+    - domain_join__domain_controllers
+    - domain_join__username
+    - domain_join__password
+    - domain_join__ou_path
+  loop_control:
+    loop_var: required_vars

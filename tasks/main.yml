@@ -1,6 +1,9 @@
 ---
 # tasks file for domain-join
 
+- name: 'Import assert tasks'
+  import_tasks: 'assert.yml'
+
 - name: 'Include OS-specific variables'
   include_vars: '{{ distribution }}'
   with_first_found:
