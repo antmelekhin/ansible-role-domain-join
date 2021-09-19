@@ -1,9 +1,17 @@
 ---
 
-- name: 'Linux | Install required packages'
-  package:
+- name: 'Debian | Install required packages'
+  apt:
     name: '{{ domain_join__packages }}'
     state: present
+    update_cache: true
+  when: ansible_os_family == 'Debian'
+
+- name: 'RedHat | Install required packages'
+  yum:
+    name: '{{ domain_join__packages }}'
+    state: present
+  when: ansible_os_family == 'RedHat'
 
 - block:
     - name: 'Linux | Checking Active Directory domain join status'
@@ -29,3 +37,15 @@
     owner: root
     group: root
     mode: 0644
+
+- name: 'Debian | Update pamd rules control in /etc/pam.d/common-session'
+  pamd:
+    name: common-session
+    type: session
+    control: optional
+    module_path: pam_systemd.so
+    new_type: session
+    new_control: optional
+    new_module_path: pam_mkhomedir.so
+    state: after
+  when: ansible_os_family == 'Debian'
