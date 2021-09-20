@@ -28,7 +28,9 @@
     owner: root
     group: root
     mode: 0600
-  notify: Linux | Restart SSSD
+  notify:
+    - Linux | Restart SSSD
+    - Debian | Enable mkhomedir
 
 - name: 'Linux | Configure Kerberos'
   template:
@@ -37,15 +39,3 @@
     owner: root
     group: root
     mode: 0644
-
-- name: 'Debian | Update pamd rules control in /etc/pam.d/common-session'
-  pamd:
-    name: common-session
-    type: session
-    control: optional
-    module_path: pam_systemd.so
-    new_type: session
-    new_control: optional
-    new_module_path: pam_mkhomedir.so
-    state: after
-  when: ansible_os_family == 'Debian'

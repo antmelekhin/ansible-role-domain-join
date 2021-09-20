@@ -6,5 +6,9 @@
     name: sssd
     state: restarted
 
+- name: 'Debian | Enable mkhomedir'
+  command: pam-auth-update --enable mkhomedir
+  when: ansible_os_family == 'Debian'
+
 - name: 'Windows | Reboot'
   win_reboot:
