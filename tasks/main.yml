@@ -15,5 +15,5 @@
 - name: 'Include OS-specific tasks for Domain Join'
   include_tasks: '{{ ansible_system }}/domain-join.yml'
 
-- name: 'Include OS-specific tasks for Add Local Administrators'
-  include_tasks: '{{ ansible_system }}/add-local-admins.yml'
+- name: 'Include OS-specific tasks for Add Domain Administrators'
+  include_tasks: '{{ ansible_system }}/add-domain-admins.yml'
