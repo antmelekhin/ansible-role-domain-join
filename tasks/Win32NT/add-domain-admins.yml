@@ -1,5 +1,4 @@
 ---
-
 - name: 'Windows | Add a users to local Administrators group'
   win_group_membership:
     name: Administrators

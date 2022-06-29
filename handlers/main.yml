@@ -1,13 +1,11 @@
 ---
-# handlers file for domain-join
-
 - name: 'Linux | Restart SSSD'
-  service:
+  ansible.builtin.service:
     name: sssd
     state: restarted
 
 - name: 'Debian | Enable mkhomedir'
-  command: pam-auth-update --enable mkhomedir
+  ansible.builtin.command: pam-auth-update --enable mkhomedir
   when: ansible_os_family == 'Debian'
 
 - name: 'Windows | Reboot'

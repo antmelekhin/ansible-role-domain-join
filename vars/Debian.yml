@@ -1,6 +1,4 @@
 ---
-# vars file for domain_join
-
 domain_join__packages:
   - realmd
   - sssd

@@ -1,7 +1,6 @@
 ---
-
 - name: 'Linux | Configure sudo permissions'
-  template:
+  ansible.builtin.template:
     src: sudoers-domain-admins.j2
     dest: /etc/sudoers.d/domain-admins
     owner: root

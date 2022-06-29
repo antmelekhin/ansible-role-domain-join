@@ -1,11 +1,9 @@
 ---
-# tasks file for domain-join
-
 - name: 'Import assert tasks'
-  import_tasks: 'assert.yml'
+  ansible.builtin.import_tasks: 'assert.yml'
 
 - name: 'Include OS-specific variables'
-  include_vars: '{{ distribution }}'
+  ansible.builtin.include_vars: '{{ distribution }}'
   with_first_found:
     - '{{ ansible_os_family }}.yml'
     - 'default.yml'
@@ -13,7 +11,7 @@
     loop_var: distribution
 
 - name: 'Include OS-specific tasks for Domain Join'
-  include_tasks: '{{ ansible_system }}/domain-join.yml'
+  ansible.builtin.include_tasks: '{{ ansible_system }}/domain-join.yml'
 
 - name: 'Include OS-specific tasks for Add Domain Administrators'
-  include_tasks: '{{ ansible_system }}/add-domain-admins.yml'
+  ansible.builtin.include_tasks: '{{ ansible_system }}/add-domain-admins.yml'
