@@ -1,9 +1,9 @@
 ---
 - name: 'Windows | Join to an Active Directory domain'
   win_domain_membership:
-    dns_domain_name: '{{ domain_join__dns_domain_name }}'
-    domain_admin_user: '{{ domain_join__username }}@{{ domain_join__dns_domain_name }}'
-    domain_admin_password: '{{ domain_join__password }}'
-    domain_ou_path: '{{ domain_join__ou_path }}'
+    dns_domain_name: '{{ domain_join_dns_domain_name }}'
+    domain_admin_user: '{{ domain_join_username }}@{{ domain_join_dns_domain_name }}'
+    domain_admin_password: '{{ domain_join_password }}'
+    domain_ou_path: '{{ domain_join_ou_path }}'
     state: domain
   notify: Windows | Reboot

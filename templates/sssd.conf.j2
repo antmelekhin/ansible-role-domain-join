@@ -1,14 +1,14 @@
 {{ ansible_managed | comment }}
 
 [sssd]
-domains = {{ domain_join__dns_domain_name }}
+domains = {{ domain_join_dns_domain_name }}
 config_file_version = 2
 services = nss, pam
 
-[domain/{{ domain_join__dns_domain_name }}]
-ad_hostname = {{ ansible_hostname }}.{{ domain_join__dns_domain_name }}
-ad_domain = {{ domain_join__dns_domain_name }}
-krb5_realm = {{ domain_join__dns_domain_name | upper }}
+[domain/{{ domain_join_dns_domain_name }}]
+ad_hostname = {{ ansible_hostname }}.{{ domain_join_dns_domain_name }}
+ad_domain = {{ domain_join_dns_domain_name }}
+krb5_realm = {{ domain_join_dns_domain_name | upper }}
 realmd_tags = manages-system joined-with-adcli
 cache_credentials = True
 id_provider = ad
