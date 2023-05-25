@@ -1,6 +1,22 @@
 ---
-- name: 'Import assert tasks'
-  ansible.builtin.import_tasks: 'assert.yml'
+- name: 'Check if short hostname length is compliant'
+  ansible.builtin.assert:
+    that: ansible_hostname | length <= 15
+    fail_msg: 'Hostname too long. Maximum NetBIOS characters is 15'
+
+- name: 'Check that required string variables are defined'
+  ansible.builtin.assert:
+    that: '{{ required_vars }} is defined and {{ required_vars }}'
+    fail_msg: '{{ required_vars }} needs to be set for the role to work'
+    success_msg: 'Required variables {{ required_vars }} is defined'
+  loop:
+    - domain_join_dns_domain_name
+    - domain_join_domain_controllers
+    - domain_join_username
+    - domain_join_password
+    - domain_join_ou_path
+  loop_control:
+    loop_var: required_vars
 
 - name: 'Include OS-specific variables'
   ansible.builtin.include_vars: '{{ distribution }}'

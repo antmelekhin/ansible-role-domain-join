@@ -2,8 +2,8 @@
 - name: 'Windows | Add a users to local Administrators group'
   win_group_membership:
     name: Administrators
-    members: '{{ admin }}@{{ domain_join__dns_domain_name }}'
+    members: '{{ admin }}@{{ domain_join_dns_domain_name }}'
     state: present
-  with_items: '{{ domain_join__admin_groups }}'
+  loop: '{{ domain_join_admin_groups }}'
   loop_control:
     loop_var: admin

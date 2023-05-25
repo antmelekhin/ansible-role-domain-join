@@ -1,10 +1,10 @@
 ---
-domain_join__dns_domain_name: ''
-domain_join__domain_controllers: ''
+domain_join_dns_domain_name: ''
+domain_join_domain_controllers: ''
 
-domain_join__username: ''
-domain_join__password: ''
-domain_join__ou_path: ''
+domain_join_username: ''
+domain_join_password: ''
+domain_join_ou_path: ''
 
-domain_join__admin_groups:
+domain_join_admin_groups:
   - 'Domain Admins'
