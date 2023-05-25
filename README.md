@@ -1,61 +1,73 @@
 Domain Join
 ===========
 
-Ansible роль для присоединения хостов к домену Active Directory и для управления локальными администраторами.
+An Ansible role for join hosts to Active Directory domain and local administrators management.
 
-Требования
-----------
+Requirements
+------------
 
-- Поддерживаемая версия Ansible: 2.7 и выше.
-- `pywinrm` для подключения [Ansible через WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html) (для Windows).
-- Список поддерживаемых платформ описан в файле метаданных роли.
+- Supported version of Ansible: 2.9 and highter.
+- `pywinrm` is a python library for connection Ansible to Windows hosts via [WinRM](https://docs.ansible.com/ansible/latest/user_guide/windows_winrm.html).
+- Supported platforms:
+  - RHEL
+    - 7
+    - 8
+  - Ubuntu
+    - 18.04
+    - 20.04
+  - Debian
+    - 10
+    - 11
+  - Windows
+    - 2016
+    - 2019
 
-Используемые переменные
------------------------
+Role Variables
+--------------
 
-- `domain_join__dns_domain_name` DNS имя домена Active Directory.
-- `domain_join__domain_controllers` Список контроллеров домена.
-- `domain_join__username` Логин пользователя, из под которого осуществляется присоединение к домену.
+- `domain_join_dns_domain_name` DNS name of the domain to which the targeted host should be joined.
+- `domain_join_domain_controllers` Domain controllers list.
+- `domain_join_username` Username to use for enrollment.
 
-  **Внимание** Если пользователь не является администратором, то нужно убедиться, что ему делегированы права на создание и изменение объектов компьютера, а также на чтение/запись атрибутов `operatingSystem` и `operatingSystemVersion`.
+  **Attention** If you use a non-administrator user, you'll need to delegate him rights to create and change `operating System` and `operatingSystemVersion` schema objects.
 
-- `domain_join__password` Пароль пользователя, из под которого осуществляется присоединение к домену.
-- `domain_join__ou_path` Организационная единица, в которую будет помещён объект компьютера после присоединения к домену.
-- `domain_join__admin_groups` Список доменных групп, пользователи которых будут являться локальными администраторами.
+- `domain_join_password` Password for the specified `domain_join_username`.
+- `domain_join_ou_path` Computer DN OU to join.
+- `domain_join_admin_groups` A list of members present in the Administrators group.
 
-Зависимости
------------
+Dependencies
+------------
 
-Отсутствуют.
+None.
 
-Пример использования
---------------------
+Example Playbook
+----------------
 
 ```yaml
 ---
 
-- name: Join Into Domain
+- name: Join to Active Direcory domain
   hosts: all
 
   roles:
-    - role: domain-join
-      domain_join__dns_domain_name: domain.local
-      domain_join__domain_controllers:
+    - role: antmelekhin.domain_join
+      domain_join_dns_domain_name: domain.local
+      domain_join_domain_controllers:
         - dc-01.domain.local
         - dc-02.domain.local
-      domain_join__username: Administrator
-      domain_join__password: P@ssw0rd!
-      domain_join__ou_path: OU=Servers,DC=domain,DC=local
-      domain_join__admin_groups:
+      domain_join_username: Administrator
+      domain_join_password: P@ssw0rd!
+      domain_join_ou_path: OU=Servers,DC=domain,DC=local
+      domain_join_admin_groups:
         - sysadmins
 ```
 
-Лицензия
---------
+License
+-------
 
 MIT
 
-Информация об авторе
---------------------
+Author Information
+------------------
 
-Мелехин Антон, ООО "ЖИЛИЩНАЯ ЭКОСИСТЕМА ВТБ".
+Melekhin Anton.

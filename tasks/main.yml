@@ -9,7 +9,7 @@
     that: '{{ required_vars }} is defined and {{ required_vars }}'
     fail_msg: '{{ required_vars }} needs to be set for the role to work'
     success_msg: 'Required variables {{ required_vars }} is defined'
-  with_items:
+  loop:
     - domain_join_dns_domain_name
     - domain_join_domain_controllers
     - domain_join_username

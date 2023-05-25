@@ -12,7 +12,8 @@
     state: present
   when: ansible_os_family == 'RedHat'
 
-- block:
+- name: 'Linux | Setup Active Directory membership'
+  block:
     - name: 'Linux | Checking Active Directory domain join status'
       ansible.builtin.shell: '/usr/sbin/realm --membership-software=adcli discover {{ domain_join_dns_domain_name }} | grep "configured: kerberos-member"'
       changed_when: false

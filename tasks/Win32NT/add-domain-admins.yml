@@ -4,6 +4,6 @@
     name: Administrators
     members: '{{ admin }}@{{ domain_join_dns_domain_name }}'
     state: present
-  with_items: '{{ domain_join_admin_groups }}'
+  loop: '{{ domain_join_admin_groups }}'
   loop_control:
     loop_var: admin
